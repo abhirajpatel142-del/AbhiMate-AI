@@ -45,10 +45,29 @@ async function buyPro() {
         description: "Pro Plan",
         order_id: data.order_id,
 
-        handler: function (response) {
-            alert("Payment Successful!");
-            window.location.href = "/payment-success?payment_id=" + response.razorpay_payment_id;
-        }
+        handler: async function (response) {
+
+    const res = await fetch("/payment-success", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            order_id: response.razorpay_order_id,
+            payment_id: response.razorpay_payment_id,
+            signature: response.razorpay_signature
+        })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+        alert("🎉 You are now a Pro User!");
+        window.location.href = "/";
+    } else {
+        alert("Payment verification failed.");
+    }
+}
     };
 
     var rzp = new Razorpay(options);

@@ -9,3 +9,12 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     daily_usage = db.Column(db.Integer, default=0)
     is_pro = db.Column(db.Boolean, default=False)
+
+
+class History(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100), nullable=False)
+    topic = db.Column(db.String(255), nullable=False)
+    platform = db.Column(db.String(100), nullable=False)
+    result = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())

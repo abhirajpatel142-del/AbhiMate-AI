@@ -1,3 +1,5 @@
+from flask import jsonify
+from payment_verify import verify_payment
 from flask import Flask, render_template, request, session, redirect
 from database import db, User
 from auth import auth
@@ -64,7 +66,13 @@ def dashboard():
     if "user" not in session:
         return redirect("/login")
 
-    return render_template("dashboard.html")
+    user = User.query.filter_by(username=session["user"]).first()
+
+    if user is None:
+        session.clear()
+        return redirect("/login")
+
+    return render_template("dashboard.html", user=user)
 
 
 @app.route("/pricing")
@@ -85,18 +93,29 @@ def buy_pro():
         "currency": order["currency"]
     }
 
-@app.route("/payment-success")
+@app.route("/payment-success", methods=["POST"])
 def payment_success():
+
     if "user" not in session:
-        return redirect("/login")
+        return jsonify({"success": False})
+
+    data = request.get_json()
+
+    ok = verify_payment(
+        data["order_id"],
+        data["payment_id"],
+        data["signature"]
+    )
+
+    if not ok:
+        return jsonify({"success": False})
 
     user = User.query.filter_by(username=session["user"]).first()
 
-    if user:
-        user.is_pro = True
-        db.session.commit()
+    user.is_pro = True
+    db.session.commit()
 
-    return redirect("/")
+    return jsonify({"success": True})
 
 @app.route("/logout")
 def logout():

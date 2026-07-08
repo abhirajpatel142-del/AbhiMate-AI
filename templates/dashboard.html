@@ -8,15 +8,25 @@
 
 <div class="container">
 
-<h1>🎉 Welcome to AbhiMate AI</h1>
+    <h1>👋 Welcome {{ user.username }}</h1>
 
-<p>Login successful.</p>
+    <div class="card">
+        <h2>📊 Account Status</h2>
+        <p><b>Plan:</b> {{ "💎 Pro" if user.is_pro else "🆓 Free" }}</p>
+        <p><b>Today's Usage:</b> {{ user.daily_usage }}/3</p>
+    </div>
 
-<br>
+    <br>
 
-<a href="/">
-<button>🤖 Open AI Generator</button>
-</a>
+    <a href="/">
+        <button>🚀 Open AI Generator</button>
+    </a>
+
+    <br><br>
+
+    <a href="/logout">
+        <button>Logout</button>
+    </a>
 
 </div>
 
