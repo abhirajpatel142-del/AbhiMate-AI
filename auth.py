@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from database import db, User
 
@@ -11,6 +11,9 @@ def signup():
         email = request.form["email"]
         password = generate_password_hash(request.form["password"])
 
+        if User.query.filter_by(email=email).first():
+            return "Email already exists."
+
         user = User(
             username=username,
             email=email,
@@ -20,7 +23,7 @@ def signup():
         db.session.add(user)
         db.session.commit()
 
-        return redirect(url_for("auth.login"))
+        return redirect("/login")
 
     return render_template("signup.html")
 
@@ -34,6 +37,15 @@ def login():
         user = User.query.filter_by(email=email).first()
 
         if user and check_password_hash(user.password, password):
+            session["user"] = user.username
             return redirect("/")
 
+        return "Invalid email or password"
+
     return render_template("login.html")
+
+
+@auth.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/login")

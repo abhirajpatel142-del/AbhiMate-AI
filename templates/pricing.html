@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AbhiMate AI - Pricing</title>
+    <link rel="stylesheet" href="/static/style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+<h1>💎 AbhiMate AI Pro</h1>
+
+<div class="card">
+<h2>🆓 Free Plan</h2>
+<p>✅ 5 AI Generations / Day</p>
+<p>✅ Script Generator</p>
+<p>✅ Thumbnail Ideas</p>
+</div>
+
+<br>
+
+<div class="card">
+<h2>🔥 Pro Plan - ₹99 / Month</h2>
+<p>✅ Unlimited AI Generations</p>
+<p>✅ Premium Scripts</p>
+<p>✅ Viral Hooks</p>
+<p>✅ Premium Support</p>
+
+<button onclick="buyPro()">
+    💳 Upgrade to Pro - ₹99
+</button>
+
+<script>
+async function buyPro() {
+
+    const res = await fetch("/buy-pro");
+    const data = await res.json();
+
+    var options = {
+        key: "rzp_test_TAv1MPfEzANmzy",
+        amount: data.amount,
+        currency: data.currency,
+        name: "AbhiMate AI",
+        description: "Pro Plan",
+        order_id: data.order_id,
+
+        handler: function (response) {
+            alert("Payment Successful!");
+            window.location.href = "/payment-success?payment_id=" + response.razorpay_payment_id;
+        }
+    };
+
+    var rzp = new Razorpay(options);
+    rzp.open();
+}
+</script>
+
+</div>
+
+<br>
+
+<a href="/">
+<button>⬅ Back</button>
+</a>
+
+</div>
+
+</body>
+</html>
