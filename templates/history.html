@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>History - AbhiMate AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+<h1>📜 AI History</h1>
+
+{% if items %}
+
+    {% for item in items %}
+
+    <div class="card">
+
+        <h3>{{ item.topic }}</h3>
+
+        <p><b>Platform:</b> {{ item.platform }}</p>
+
+        <pre>{{ item.result }}</pre>
+
+        <small>{{ item.created_at }}</small>
+
+    </div>
+
+    <br>
+
+    {% endfor %}
+
+{% else %}
+
+<h3>No History Found</h3>
+
+{% endif %}
+
+<a href="/dashboard">
+    <button>⬅ Dashboard</button>
+</a>
+
+</div>
+
+</body>
+</html>

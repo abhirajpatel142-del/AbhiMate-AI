@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>AbhiMate AI</title>
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="logo">🤖 AbhiMate AI</div>
+
+    <div class="nav-right">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/pricing">💎 Pro</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+<div class="hero">
+    <h1>🚀 AbhiMate AI</h1>
+    <p>Create Viral YouTube Shorts & Instagram Reels with AI</p>
+
+    <div class="hero-badges">
+        <span>🎬 Scripts</span>
+        <span>🎯 Ideas</span>
+        <span>🎨 Thumbnails</span>
+        <span>🪝 Hooks</span>
+    </div>
+</div>
+<div class="container">
+
+<h1>🚀 ABHIMATE AI</h1>
+<h2>Create Viral YouTube Shorts & Instagram Reels in Seconds 🚀</h2>
+
+<p>Generate Ideas • Scripts • Titles • Hooks • Hashtags with AI</p>
+<div class="logo">
+🤖
+</div>
+
+<p>
+Creators ka AI Dost 🚀
+</p>
+<div class="features">
+
+<div class="card">
+🎯
+<h3>Video Ideas</h3>
+<p>Viral content ideas generate karo</p>
+</div>
+
+
+<div class="card">
+🎬
+<h3>Script Generator</h3>
+<p>Shorts ke liye ready scripts banao</p>
+</div>
+
+
+<div class="card">
+🎨
+<h3>Thumbnail Ideas</h3>
+<p>Clickable thumbnail concepts pao</p>
+</div>
+
+
+</div>
+<form method="POST">
+
+<label><b>🎯 Enter Your Video Topic</b></label>
+
+<input
+type="text"
+name="topic"
+placeholder="Enter video topic"
+required>
+<label><b>📱 Select Platform</b></label>
+<select name="platform">
+<option>YouTube Shorts</option>
+<option>Instagram Reels</option>
+</select>
+
+<button type="submit">
+🚀 Generate Ideas
+</button>
+
+</form>
+
+
+<form action="/script" method="POST">
+
+<input 
+type="hidden"
+name="topic"
+id="scriptTopic">
+
+<button type="submit" onclick="setTopic()">
+🎬 Generate Script
+</button>
+
+</form>
+<form action="/thumbnail" method="POST">
+
+<input 
+type="hidden"
+name="topic"
+id="thumbnailTopic">
+
+
+<button type="submit" onclick="setThumbnail()">
+🎨 Generate Thumbnail
+</button>
+
+</form>
+
+
+<script>
+
+function setThumbnail(){
+
+document.getElementById("thumbnailTopic").value =
+document.querySelector('input[name="topic"]').value;
+
+}
+
+</script>
+
+{% if result %}
+
+<div class="result">
+
+<h2>AI Result</h2>
+
+<pre id="output">{{result}}</pre>
+
+<button onclick="copyText()">
+📋 Copy
+</button>
+
+</div>
+
+{% endif %}
+
+
+</div>
+
+
+<script>
+
+function setTopic(){
+
+document.getElementById("scriptTopic").value =
+document.querySelector('input[name="topic"]').value;
+
+}
+
+
+function copyText(){
+
+navigator.clipboard.writeText(
+document.getElementById("output").innerText
+);
+
+alert("Copied!");
+
+}
+
+</script>
+<hr>
+
+<div class="footer">
+    <h3>📧 Contact</h3>
+    <p>Made with ❤️ by Abhi</p>
+    <p>AbhiMate AI © 2026</p>
+<br>
+
+<a href="/pricing">
+    <button>💎 Upgrade to Pro</button>
+</a>
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+

@@ -6,22 +6,29 @@
 }
 
 body{
-    background:#0f172a;
+    margin:0;
+    font-family:Arial,sans-serif;
     color:#fff;
+    min-height:100vh;
+    padding:30px;
+    background:
+        radial-gradient(circle at top left,#2563eb 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#7c3aed 0%,transparent 35%),
+        #0f172a;
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
-    padding:20px;
 }
 
 .container{
     width:100%;
-    max-width:700px;
-    background:#1e293b;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 0 20px rgba(0,0,0,.4);
+    max-width:900px;
+    background:rgba(30,41,59,.75);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.08);
+    padding:40px;
+    border-radius:24px;
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
 h1{
@@ -37,23 +44,41 @@ label{
 
 input,select{
     width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    margin-bottom:15px;
+    padding:15px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.15);
+    background:#0f172a;
+    color:white;
     font-size:16px;
+    margin-bottom:16px;
+    transition:.3s;
+}
+
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#60a5fa;
+    box-shadow:0 0 15px rgba(96,165,250,.4);
 }
 
 button{
     width:100%;
-    padding:14px;
+    padding:15px;
     border:none;
-    border-radius:8px;
-    background:#2563eb;
-    color:#fff;
+    border-radius:14px;
+    background:linear-gradient(135deg,#3b82f6,#7c3aed);
+    color:white;
     font-size:17px;
-    font-weight:bold;
+    font-weight:700;
     cursor:pointer;
+    transition:.3s;
+    margin-top:10px;
+    box-shadow:0 10px 25px rgba(59,130,246,.35);
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 35px rgba(124,58,237,.45);
 }
 
 button:hover{
@@ -61,13 +86,163 @@ button:hover{
 }
 
 .result{
-    margin-top:20px;
-    background:#0f172a;
-    padding:15px;
-    border-radius:10px;
+    margin-top:30px;
+    padding:25px;
+    border-radius:18px;
+    background:rgba(15,23,42,.85);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+}
+
+.result h2{
+    margin-bottom:15px;
 }
 
 pre{
     white-space:pre-wrap;
+    line-height:1.8;
+    color:#e2e8f0;
+    font-size:15px;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:42px;
+    font-weight:800;
+    background:linear-gradient(90deg,#38bdf8,#8b5cf6,#ec4899);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#cbd5e1;
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.hero-badges{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.hero-badges span{
+    background:#334155;
+    color:white;
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:14px;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    margin:30px 0;
+}
+
+.card{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:24px;
+    text-align:center;
+    transition:.3s;
+    backdrop-filter:blur(12px);
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+
+.card h3{
+    margin:12px 0;
+    font-size:22px;
+}
+
+.card p{
+    color:#cbd5e1;
     line-height:1.6;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    padding-bottom:15px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:700;
+}
+
+.nav-right{
+    display:flex;
+    gap:20px;
+}
+
+.nav-right a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.nav-right a:hover{
+    color:#60a5fa;
+}
+
+@media (max-width:768px){
+
+body{
+    display:block;
+    padding:15px;
+}
+
+.container{
+    width:100%;
+    max-width:100%;
+    margin:auto;
+    padding:20px;
+}
+
+.navbar{
+    flex-direction:column;
+    gap:15px;
+    text-align:center;
+}
+
+.nav-right{
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.hero{
+    text-align:center;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:15px;
+}
+
+button{
+    width:100%;
+}
+
+.footer{
+    text-align:center;
+}
+
 }

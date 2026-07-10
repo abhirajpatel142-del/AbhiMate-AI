@@ -138,3 +138,67 @@ Give:
     result = response.json()
 
     return result["choices"][0]["message"]["content"]
+
+def generate_hook(topic):
+
+    url = "https://api.groq.com/openai/v1/chat/completions"
+
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    prompt = f"""
+Create 10 viral YouTube Shorts hooks for the topic:
+
+{topic}
+
+Keep each hook under 15 words.
+"""
+
+    data = {
+        "model": "llama-3.1-8b-instant",
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    }
+
+    response = requests.post(url, headers=headers, json=data)
+    result = response.json()
+
+    return result["choices"][0]["message"]["content"]
+
+def generate_hashtags(topic):
+
+    url = "https://api.groq.com/openai/v1/chat/completions"
+
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    prompt = f"""
+Create 20 viral hashtags for this topic:
+
+{topic}
+
+Only return hashtags.
+"""
+
+    data = {
+        "model": "llama-3.1-8b-instant",
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    }
+
+    response = requests.post(url, headers=headers, json=data)
+    result = response.json()
+
+    return result["choices"][0]["message"]["content"]

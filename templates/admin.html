@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+<h1>👑 Admin Dashboard</h1>
+
+<div class="card">
+<h2>Total Users</h2>
+<h1>{{ total_users }}</h1>
+</div>
+
+<br>
+
+<div class="card">
+<h2>Pro Users</h2>
+<h1>{{ pro_users }}</h1>
+</div>
+
+<br>
+
+<div class="card">
+<h2>Total AI Generations</h2>
+<h1>{{ total_history }}</h1>
+</div>
+<br>
+
+<div class="card">
+
+<h2>👥 Users</h2>
+
+<table style="width:100%; text-align:center;">
+
+<tr>
+<th>Username</th>
+<th>Pro</th>
+<th>Daily Usage</th>
+<th>Action</th>
+</tr>
+
+{% for user in users %}
+
+<tr>
+
+<td>{{ user.username }}</td>
+
+<td>
+{% if user.is_pro %}
+✅
+{% else %}
+❌
+{% endif %}
+</td>
+
+<td>{{ user.daily_usage }}</td>
+
+<td>
+
+<a href="/make-pro/{{ user.id }}">
+<button>Make Pro</button>
+</a>
+
+<a href="/remove-pro/{{ user.id }}">
+<button>Remove Pro</button>
+</a>
+
+<a href="/delete-user/{{ user.id }}" onclick="return confirm('Delete this user?')">
+<button style="background:red;">Delete User</button>
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div> 
+
+</body>
+</html>

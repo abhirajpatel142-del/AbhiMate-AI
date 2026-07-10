@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile - AbhiMate AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+<div class="hero">
+<h1>👤 My Profile</h1>
+<p>Your AbhiMate AI Account</p>
+</div>
+
+<div class="card">
+<h3>Username</h3>
+<p>{{ user.username }}</p>
+</div>
+
+<br>
+
+<div class="card">
+<h3>Email</h3>
+<p>{{ user.email }}</p>
+</div>
+
+<br>
+
+<div class="card">
+<h3>Plan</h3>
+<p>{{ "💎 Pro" if user.is_pro else "🆓 Free" }}</p>
+</div>
+
+<br>
+
+<a href="/dashboard">
+<button>⬅ Dashboard</button>
+</a>
+
+</div>
+
+</body>
+</html>
