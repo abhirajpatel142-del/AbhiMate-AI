@@ -162,7 +162,10 @@ def history():
 
 @app.route("/pricing")
 def pricing():
-    return render_template("pricing.html")
+    return render_template(
+        "pricing.html",
+        razorpay_key_id=os.getenv("RAZORPAY_KEY_ID")
+    )
 
 @app.route("/contact")
 def contact():

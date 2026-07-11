@@ -38,7 +38,7 @@ async function buyPro() {
     const data = await res.json();
 
     var options = {
-        key: "rzp_test_TBTSyt7T35hGx4",
+        key: "{{ razorpay_key_id }}",
         amount: data.amount,
         currency: data.currency,
         name: "AbhiMate AI",
