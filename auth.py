@@ -22,6 +22,7 @@ def signup():
 
         db.session.add(user)
         db.session.commit()
+        print("NEW USER SAVED:", username, email)
 
         return redirect("/login")
 
